@@ -3,7 +3,6 @@ const webpack = require('webpack');
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
-
 },
 })
 module.exports = {

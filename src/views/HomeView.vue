@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       setuList: [],
-      column: 6,
+      column: 0,
       choosePictureCard: {}
     }
   },
@@ -76,6 +76,16 @@ export default {
         this.setuList = res.data
       }
     )
+    let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+		if (flag) {
+			this.column = 2
+		} else {
+      this.detectScreenSize();
+		}
+		
+		window.onresize = () => {
+			this.detectScreenSize();
+		}
   },
   methods:{
     chooseSetu(e){
@@ -83,7 +93,17 @@ export default {
     },
     clickPictureModel(){
       $('#myModal').modal('toggle')
-    }
+    },
+    detectScreenSize() {
+      if(document.body.clientWidth < 660){
+				this.column = 2
+      }
+			else if (document.body.clientWidth < 970) {
+				this.column = 4
+			} else {
+				this.column = 6
+			}
+		}
   }
 }
 </script>
@@ -157,6 +177,9 @@ nav{
   .container-fluid {
     display: flex;
     justify-content: space-between;
+  }
+  .navbar-right{
+    display: none;
   }
 }
 </style>
