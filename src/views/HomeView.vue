@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    this.axios.get('setu').then(
+    this.axios.get('http://121.5.141.179:9876/pc/getUrl').then(
       res => {
         this.setuList = res.data
       }
